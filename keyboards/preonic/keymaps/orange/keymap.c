@@ -19,19 +19,19 @@
 
 enum preonic_layers {
   _QWERTY,
+  _MANUAL,
   _LOWEST,
   _LOWER,
   _RAISE,
-  _HIGHEST,
   _ADJUST
 };
 
 enum preonic_keycodes {
   QWERTY = SAFE_RANGE,
+  MANUAL,
   LOWEST,
   LOWER,
   RAISE,
-  HIGHEST,
   BACKLIT
 };
 
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   ?  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl |Lowest| GUI  | Alt  |Lower |    Space    | Raise| Enter| RAlt |Highes|Highes|
+ * | Ctrl |Lowest| GUI  | Alt  |Lower |    Space    | Raise| Enter| RAlt |      |Manual|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -55,8 +55,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,       RALT(KC_W),
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    RALT(KC_P), RALT(KC_Q),
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_QUES,    KC_ENT,
-  KC_LCTL, LOWEST,  KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, HIGHEST,    HIGHEST
+  KC_LCTL, LOWEST,  KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, XXXXXXX,    MANUAL
 ),
+
+/* Manual
+ * ,-----------------------------------------------------------------------------------.
+ * |      |Accel1|Accel2|Accel3|      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |Click1| MUp  |Click2|      |      |      | WLeft| WDown| WUp  |WRight|      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | MLeft| MDown|MRight|      |      |      | Left | Down |  Up  | Right|      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | Home | PGDN | PGUP |  End |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |             |      |      |      |      |Qwerty|
+ * `-----------------------------------------------------------------------------------'
+ */
+[_MANUAL] = LAYOUT_preonic_grid(
+  XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, QWERTY
+),
+
 
 /* Lowest
  * ,-----------------------------------------------------------------------------------.
@@ -122,27 +144,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, KC_BSPC, KC_BSPC, _______, _______, _______, _______, _______
 ),
 
-/* Highest
- * ,-----------------------------------------------------------------------------------.
- * |      |Accel1|Accel2|Accel3|      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |Click1| MUp  |Click2|      |      |      | WLeft| WDown| WUp  |WRight|      |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      | MLeft| MDown|MRight|      |      |      | Left | Down |  Up  | Right|      |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      | Home | PGDN | PGUP |  End |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
-[_HIGHEST] = LAYOUT_preonic_grid(
-  XXXXXXX, KC_ACL0, KC_ACL1, KC_ACL2, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2, XXXXXXX, XXXXXXX, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, XXXXXXX, XXXXXXX,
-  XXXXXXX, KC_MS_L, KC_MS_D, KC_MS_R, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XXXXXXX, XXXXXXX,
-  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  XXXXXXX, XXXXXXX,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-),
-
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |      |      |
@@ -175,6 +176,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
+        case MANUAL:
+          if (record->event.pressed) {
+            set_single_persistent_default_layer(_MANUAL);
+          }
+          return false;
+          break;
         case LOWEST:
           if (record->event.pressed) {
             layer_on(_LOWEST);
@@ -200,14 +207,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           } else {
             layer_off(_RAISE);
             update_tri_layer(_LOWER, _RAISE, _ADJUST);
-          }
-          return false;
-          break;
-        case HIGHEST:
-          if (record->event.pressed) {
-            layer_on(_HIGHEST);
-          } else {
-            layer_off(_HIGHEST);
           }
           return false;
           break;
