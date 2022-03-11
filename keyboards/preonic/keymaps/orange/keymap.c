@@ -12,6 +12,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ * https://docs.qmk.fm/#/keycodes
  */
 
 #include QMK_KEYBOARD_H
@@ -32,6 +35,7 @@ enum preonic_keycodes {
   LOWEST,
   LOWER,
   RAISE,
+  ADJUST,
   BACKLIT
 };
 
@@ -47,15 +51,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   ?  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl |Lowest| GUI  | Alt  |Lower |    Space    | Raise| Enter| RAlt |      |Manual|
+ * | Ctrl |Lowest| GUI  | Alt  |Lower |    Space    | Raise|      | RAlt |      |Manual|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
-  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,       KC_BSPC,
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,       RALT(KC_W),
-  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    RALT(KC_P), RALT(KC_Q),
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_QUES,    KC_ENT,
-  KC_LCTL, LOWEST,  KC_LGUI, KC_LALT, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_ENT,  KC_RALT, XXXXXXX,    MANUAL
+  KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,                KC_5,    KC_6,    KC_7,                KC_8,    KC_9,    KC_0,       KC_BSPC,
+  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,                KC_T,    KC_Y,    KC_U,                KC_I,    KC_O,    KC_P,       RALT(KC_W),
+  KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,                KC_K,    KC_L,    RALT(KC_P), RALT(KC_Q),
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,                KC_B,    KC_N,    KC_M,                KC_COMM, KC_DOT,  KC_QUES,    KC_ENT,
+  KC_LCTL, LOWEST,  KC_LGUI, KC_LALT, LT(_LOWER, KC_ENT),  KC_SPC,  KC_SPC,  LT(_RAISE, KC_ENT),  XXXXXXX, KC_RALT, XXXXXXX,    MANUAL
 ),
 
 /* Manual
@@ -119,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL,
   XXXXXXX, XXXXXXX, XXXXXXX, KC_LPRN, KC_RPRN, KC_QUOT, KC_SCLN, KC_LBRC, KC_RBRC, XXXXXXX, XXXXXXX, XXXXXXX,
   _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_MINS, KC_NUBS, KC_SLSH, KC_EQL,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  _______, _______, _______, _______, _______, KC_BSPC, KC_BSPC, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, KC_BSPC, KC_BSPC, ADJUST,  _______, _______, _______, _______
 ),
 
 
@@ -141,7 +145,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
   XXXXXXX, XXXXXXX, XXXXXXX, KC_LT,   KC_GT,   KC_DQUO, KC_COLN, KC_LCBR, KC_RCBR, XXXXXXX, XXXXXXX, XXXXXXX,
   _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_UNDS, KC_PIPE, KC_QUES, KC_PLUS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  _______, _______, _______, _______, _______, KC_BSPC, KC_BSPC, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, ADJUST,  KC_BSPC, KC_BSPC, _______, _______, _______, _______, _______
 ),
 
 /* Adjust (Lower + Raise)
@@ -207,6 +211,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           } else {
             layer_off(_RAISE);
             update_tri_layer(_LOWER, _RAISE, _ADJUST);
+          }
+          return false;
+          break;
+        case ADJUST:
+          if (record->event.pressed) {
+            layer_on(_ADJUST);
+          } else {
+            layer_off(_ADJUST);
           }
           return false;
           break;
