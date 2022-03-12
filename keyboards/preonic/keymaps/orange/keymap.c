@@ -23,7 +23,7 @@
 enum preonic_layers {
   _QWERTY,
   _MANUAL,
-  _LOWEST,
+  _SYSTEM,
   _LOWER,
   _RAISE,
   _ADJUST
@@ -32,7 +32,7 @@ enum preonic_layers {
 enum preonic_keycodes {
   QWERTY = SAFE_RANGE,
   MANUAL,
-  LOWEST,
+  SYSTEM,
   LOWER,
   RAISE,
   ADJUST,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   ?  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl |Lowest| GUI  | Alt  |Lower |    Space    | Raise|      | RAlt |      |Manual|
+ * | Ctrl |System| GUI  | Alt  |Lower |    Space    | Raise|      | RAlt |      |Manual|
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,                KC_T,    KC_Y,    KC_U,                KC_I,    KC_O,    KC_P,       RALT(KC_W),
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,                KC_G,    KC_H,    KC_J,                KC_K,    KC_L,    RALT(KC_P), RALT(KC_Q),
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,                KC_B,    KC_N,    KC_M,                KC_COMM, KC_DOT,  KC_QUES,    KC_ENT,
-  KC_LCTL, LOWEST,  KC_LGUI, KC_LALT, LT(_LOWER, KC_ENT),  KC_SPC,  KC_SPC,  LT(_RAISE, KC_ENT),  XXXXXXX, KC_RALT, XXXXXXX,    MANUAL
+  KC_LCTL, SYSTEM,  KC_LGUI, KC_LALT, LT(_LOWER, KC_ENT),  KC_SPC,  KC_SPC,  LT(_RAISE, KC_ENT),  XXXXXXX, KC_RALT, XXXXXXX,    MANUAL
 ),
 
 /* Manual
@@ -84,24 +84,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 
-/* Lowest
+/* System
  * ,-----------------------------------------------------------------------------------.
- * |Light+|Vol+  |      |      |      |      |      |      | NLock|   /  |   *  |  =   |
+ * |Light+|Vol+  | AuOn |MusOn |      |      |      |      | NLock|   /  |   *  |  =   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |Light-|Vol-  |      |      |      |      |      |      |   7  |   8  |   9  |  -   |
+ * |Light-|Vol-  | AuOff|MusOff| Reset|      |      |      |   7  |   8  |   9  |  -   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |   4  |   5  |   6  |  +   |
+ * | MPrev| MNext|Voice+|MusMod|      |      |      |      |   4  |   5  |   6  |  +   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | MNext| Play | MPrev|      |      |      |      |   1  |   2  |   3  | Enter|
+ * |      | MPlay|Voice-|      |      |      |      |      |   1  |   2  |   3  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |   ,  |   0  |   .  |      |
  * `-----------------------------------------------------------------------------------'
  */
-[_LOWEST] = LAYOUT_preonic_grid(
-  KC_BRIU, KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_NLCK, KC_PSLS, KC_PAST, KC_PEQL,
-  KC_BRID, KC_VOLD, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
-  _______, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P1,   KC_P2,   KC_P3,   KC_PENT,
+[_SYSTEM] = LAYOUT_preonic_grid(
+  KC_BRIU, KC_VOLU, AU_ON,   MU_ON,   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_NLCK, KC_PSLS, KC_PAST, KC_PEQL,
+  KC_BRID, KC_VOLD, AU_OFF,  MU_OFF,  RESET,  XXXXXXX,XXXXXXX,XXXXXXX,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
+  KC_MPRV, KC_MNXT, MUV_IN,  MU_MOD,  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
+  _______, KC_MPLY, MUV_DE,  XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P1,   KC_P2,   KC_P3,   KC_PENT,
   _______, _______, _______, _______, _______,_______,_______,_______,  KC_PCMM, KC_P0,   KC_PDOT, _______
 ),
 
@@ -152,20 +152,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      | Reset| Debug|      |      |      |      |TermOf|TermOn|      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |Aud cy|Aud on|AudOff|AGnorm|AGswap|Qwerty|      |      |      |      |
+ * |      |      |      |      |      |      | Left | Down |  Up  | Down |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Voice-|Voice+|Mus on|MusOff|MidiOn|MidOff|      |      |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_preonic_grid(
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, RESET,   DEBUG,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TERM_ON, TERM_OFF,XXXXXXX, XXXXXXX, XXXXXXX,
-  XXXXXXX, XXXXXXX, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_DOWN, XXXXXXX, XXXXXXX,
+  _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 )
 
@@ -186,11 +186,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           }
           return false;
           break;
-        case LOWEST:
+        case SYSTEM:
           if (record->event.pressed) {
-            layer_on(_LOWEST);
+            layer_on(_SYSTEM);
           } else {
-            layer_off(_LOWEST);
+            layer_off(_SYSTEM);
           }
           return false;
           break;
