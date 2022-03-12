@@ -1,20 +1,60 @@
-/* Copyright 2015-2021 Jack Humbert
+/*
+ * # Olle's Preonic layout
  *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
+ * ## Preamble
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
+ * This layout's goal is the following:
+ * - All characters for writing english text should be easily available
+ * - All characters for writing swedish text should be easily available
+ * - All characters for programming in a generic language should be easily available
+ * - All characters used by the three major OSes should be available in some way
+ *   (e.g. CTRL + ALT + DELETE)
+ * - If possible, being able to work without a mouse would be a massive plus
  *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * N.B!
+ * This keyboard expects the OS keyboard layout to be one of the US INTL ones.
+ * To be used on macOS you might need my custom keyboard layout in lollek/dotfiles,
+ * otherwise the swedish support will not work.
  *
+ * ## Layer Description
  *
- * https://docs.qmk.fm/#/keycodes
+ * There are several layers available, two permanent ones and four which require
+ * holding down a key.
+ *
+ * ### QWERTY (default)
+ * The QWERTY layer is very similar to a normal keyboard, especially a swedish one,
+ * since åäö are in their correct places. Not much to comment on this layer.
+ * This layer aims to have all characters for writing english and swedish texts.
+ *
+ * ### MANUAL (toggleable)
+ * This layer is a movement layer. It has full mouse support with three speed
+ * settings. It also contains most keys for moving around in a text application
+ * or other program.
+ *
+ * ### SYSTEM (keydown from QWERTY)
+ * This layer has all system buttons, both for the computer and the keyboard.
+ * For example screen brightness or system volume. But also qmk reset, music
+ * mode, etc. The key to hold down is placed in an awkward place to avoid
+ * accidentally entering this layer.
+ *
+ * ### LOWER (keydown from QWERTY)
+ * This layer has many special keys which are available without pressing shift
+ * on a normal keyboard, but this is not a hard rule. The layer is formatted for
+ * convenience when programming.
+ *
+ * ### RAISE (keydown from QWERTY)
+ * This layer has many special keys which are available when pressing shift
+ * on a normal keyboard, but this is not a hard rule. The layer is formatted for
+ * convenience when programming.
+ *
+ * ### ADJUST (keydown from LOWER or RAISE)
+ * This is the overflow layer. I don't know what will end up here, but I think
+ * it will have convenience keys and perhaps special keys which are too rarely
+ * used to have a place on QWERTY, LOWER or RAISE.
+ *
+ * Helpful links for modifications:
+ * - https://docs.qmk.fm/#/keycodes
+ * - all stuff under docs/
  */
 
 #include QMK_KEYBOARD_H
