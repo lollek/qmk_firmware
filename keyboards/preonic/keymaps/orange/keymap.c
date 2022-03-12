@@ -126,23 +126,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* System
  * ,-----------------------------------------------------------------------------------.
- * |Light+|Vol+  | AuOn |MusOn |      |      |      |      | NLock|   /  |   *  |  =   |
+ * |Light+|Vol+  | AuOn |MusOn |      |RgbTog|      |      | NLock|   /  |   *  |  =   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |Light-|Vol-  | AuOff|MusOff| Reset|      |      |      |   7  |   8  |   9  |  -   |
+ * |Light-|Vol-  | AuOff|MusOff| Reset|RgbMod|      |      |   7  |   8  |   9  |  -   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | MPrev| MNext|Voice+|MusMod|      |      |      |      |   4  |   5  |   6  |  +   |
+ * | MPrev| MNext|Voice+|MusMod|      |RgbHue|      |      |   4  |   5  |   6  |  +   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | MPlay|Voice-|      |      |      |      |      |   1  |   2  |   3  | Enter|
+ * |      | MPlay|Voice-|      |      |RgbSat|      |      |   1  |   2  |   3  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |   ,  |   0  |   .  |      |
+ * |      |      |      |      |      |RgbVal|      |      |   ,  |   0  |   .  |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_SYSTEM] = LAYOUT_preonic_grid(
-  KC_BRIU, KC_VOLU, AU_ON,   MU_ON,   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_NLCK, KC_PSLS, KC_PAST, KC_PEQL,
-  KC_BRID, KC_VOLD, AU_OFF,  MU_OFF,  RESET,  XXXXXXX,XXXXXXX,XXXXXXX,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
-  KC_MPRV, KC_MNXT, MUV_IN,  MU_MOD,  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
-  _______, KC_MPLY, MUV_DE,  XXXXXXX, XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  KC_P1,   KC_P2,   KC_P3,   KC_PENT,
-  _______, _______, _______, _______, _______,_______,_______,_______,  KC_PCMM, KC_P0,   KC_PDOT, _______
+  KC_BRIU, KC_VOLU, AU_ON,   MU_ON,   XXXXXXX,RGB_TOG,XXXXXXX,XXXXXXX,  KC_NLCK, KC_PSLS, KC_PAST, KC_PEQL,
+  KC_BRID, KC_VOLD, AU_OFF,  MU_OFF,  RESET,  RGB_MOD,XXXXXXX,XXXXXXX,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
+  KC_MPRV, KC_MNXT, MUV_IN,  MU_MOD,  XXXXXXX,RGB_HUI,XXXXXXX,XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
+  _______, KC_MPLY, MUV_DE,  XXXXXXX, XXXXXXX,RGB_SAI,XXXXXXX,XXXXXXX,  KC_P1,   KC_P2,   KC_P3,   KC_PENT,
+  _______, _______, _______, _______, _______,RGB_VAI,XXXXXXX,_______,  KC_PCMM, KC_P0,   KC_PDOT, _______
 ),
 
 /* Lower
