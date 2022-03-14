@@ -37,6 +37,9 @@
  * mode, etc. The key to hold down is placed in an awkward place to avoid
  * accidentally entering this layer.
  *
+ * ### SPACE2 (keydown from QWERTY)
+ * Convenience keys for navigation when writing text.
+ *
  * ### LOWER (keydown from QWERTY)
  * This layer has many special keys which are available without pressing shift
  * on a normal keyboard, but this is not a hard rule. The layer is formatted for
