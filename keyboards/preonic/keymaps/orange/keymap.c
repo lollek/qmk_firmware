@@ -91,7 +91,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   ?  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl |System| GUI  | Alt  |Lower | Space| Space| Raise| RAlt |      |      |Manual|
+ * | Ctrl |System| GUI  | Alt  |Lower | Space| Space| Raise| RAlt |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_preonic_grid(
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,   KC_T,    KC_Y,    KC_U,                KC_I,    KC_O,    KC_P,       RALT(KC_W),
   KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,   KC_G,    KC_H,    KC_J,                KC_K,    KC_L,    RALT(KC_P), RALT(KC_Q),
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,   KC_B,    KC_N,    KC_M,                KC_COMM, KC_DOT,  KC_QUES,    KC_ENT,
-  KC_LCTL, SYSTEM,  KC_LGUI, KC_LALT, LOWER,  KC_SPC,  KC_SPC,  LT(_RAISE, KC_ENT),  KC_RALT, XXXXXXX, XXXXXXX,    MANUAL
+  KC_LCTL, SYSTEM,  KC_LGUI, KC_LALT, LOWER,  KC_SPC,  KC_SPC,  LT(_RAISE, KC_ENT),  KC_RALT, XXXXXXX, XXXXXXX,    XXXXXXX
 ),
 
 /* Manual
@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      | MPlay|Voice-|      |      |RgbSat|      |      |   1  |   2  |   3  | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |RgbVal|      |      |   ,  |   0  |   .  |      |
+ * |      |      |      |      |      |RgbVal|      |      |   ,  |   0  |   .  |Manual|
  * `-----------------------------------------------------------------------------------'
  */
 [_SYSTEM] = LAYOUT_preonic_grid(
@@ -142,7 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_BRID, KC_VOLD, AU_OFF,  MU_OFF,  RESET,  RGB_MOD,XXXXXXX,XXXXXXX,  KC_P7,   KC_P8,   KC_P9,   KC_PMNS,
   KC_MPRV, KC_MNXT, MUV_IN,  MU_MOD,  XXXXXXX,RGB_HUI,XXXXXXX,XXXXXXX,  KC_P4,   KC_P5,   KC_P6,   KC_PPLS,
   XXXXXXX, KC_MPLY, MUV_DE,  XXXXXXX, XXXXXXX,RGB_SAI,XXXXXXX,XXXXXXX,  KC_P1,   KC_P2,   KC_P3,   KC_PENT,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,RGB_VAI,XXXXXXX,XXXXXXX,  KC_PCMM, KC_P0,   KC_PDOT, XXXXXXX
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,RGB_VAI,XXXXXXX,XXXXXXX,  KC_PCMM, KC_P0,   KC_PDOT, MANUAL
 ),
 
 /* Lower
