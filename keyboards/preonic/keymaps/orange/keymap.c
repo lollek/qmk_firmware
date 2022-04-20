@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |   '  |   (  |   )  |   -  |   +  |   [  |   ]  |   :  |      |      |
+ * |      |   -  |   '  |   (  |   )  |   -  |   +  |   [  |   ]  |   :  |   +  |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | ____ |      |      |      |   /  |   -  |   +  |   \  |      |      |      | ____ |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -213,7 +213,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_preonic_grid(
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-  XXXXXXX, XXXXXXX, KC_QUOT, KC_LPRN, KC_RPRN, KC_MINS, KC_PLUS, KC_LBRC, KC_RBRC, KC_SCLN, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_MINS, KC_QUOT, KC_LPRN, KC_RPRN, KC_MINS, KC_PLUS, KC_LBRC, KC_RBRC, KC_SCLN, KC_PLUS, XXXXXXX,
   _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_SLSH, KC_MINS, KC_PLUS, KC_NUBS, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   _______, _______, _______, _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______
 ),
@@ -225,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |   "  |   <  |   >  |   _  |   =  |   {  |   }  |   :  |      |      |
+ * |      |   _  |   "  |   <  |   >  |   _  |   =  |   {  |   }  |   :  |   =  |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | ____ |      |      |      |   ?  |   _  |   =  |   |  |      |      |      | ____ |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -235,7 +235,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_preonic_grid(
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL,
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  XXXXXXX, XXXXXXX, KC_DQUO, KC_LT,   KC_GT,   KC_UNDS, KC_EQL,  KC_LCBR, KC_RCBR, KC_COLN, XXXXXXX, XXXXXXX,
+  XXXXXXX, KC_UNDS, KC_DQUO, KC_LT,   KC_GT,   KC_UNDS, KC_EQL,  KC_LCBR, KC_RCBR, KC_COLN, KC_EQL,  XXXXXXX,
   _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_QUES, KC_UNDS, KC_EQL,  KC_PIPE, XXXXXXX, XXXXXXX, XXXXXXX, _______,
   _______, _______, _______, _______, ADJUST,  _______, _______, _______, _______, _______, _______, _______
 ),
